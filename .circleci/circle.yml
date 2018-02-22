@@ -22,8 +22,8 @@ deploy-job:
   steps:
       - run:
           name: Deploy to ECR if tests pass and branch is Master
-#          command: docker push $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/dbc/demo1:$CIRCLE_SH
-          command: ./deploy.sh
+          command: docker push $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/dbc/demo1:$CIRCLE_SH
+#          command: ./deploy.sh
 
 workflows:
   version: 2
