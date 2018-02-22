@@ -14,7 +14,7 @@ test:
 deploy-job:
     docker:
       - image: dbc/demo1
-    working_directory: /tmp/my-project  
+    working_directory: /opt/DBC-Demo 
     steps:
       - run:
           name: Deploy to ECR if tests pass and branch is Master
