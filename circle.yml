@@ -12,9 +12,12 @@ test:
     - curl --retry 10 --retry-delay 5 localhost:8080 | grep "Hello World!"
 
 deploy-job:
-    docker:
-      - image: dbc/demo1
-    working_directory: /opt/DBC-Demo 
+      docker:
+      - image: $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/dbc/demo1:$CIRCLE_SHA1
+        aws_auth:
+          aws_access_key_id: $AWS_ACCESS_KEY_ID
+          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
+#    working_directory: /opt/DBC-Demo 
     steps:
       - run:
           name: Deploy to ECR if tests pass and branch is Master
