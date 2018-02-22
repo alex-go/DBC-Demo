@@ -18,7 +18,7 @@ deploy-job:
         aws_access_key_id: $AWS_ACCESS_KEY_ID
         aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
 #    working_directory: /opt/DBC-Demo 
-    steps:
+  steps:
       - run:
           name: Deploy to ECR if tests pass and branch is Master
           command: docker push $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/dbc/demo1:$CIRCLE_SHA1
