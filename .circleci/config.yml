@@ -1,17 +1,21 @@
 version: 2
 jobs:
   build:
+    working_directory: /dbc-demo1
     docker:
-      - image: ubuntu:14.04
+      - image: docker:17.05.0-ce-git
     steps:
       - checkout
       - setup_remote_docker
       - run:
-          name: install aws
+          name: Install dependencies
           command: |
-            apt-get update -q
-            apt-get install -y python-pip
-            pip install awscli
+            apk add --no-cache py-pip=9.0.0-r1
+            pip install awscli==1.11.76
+      - run:
+          name: Build application Docker image
+          command: |
+            docker build -t dbc-demo1 .  
       - run:
           name: "Log in to AWS ECR"
           command: eval $(aws ecr get-login)
